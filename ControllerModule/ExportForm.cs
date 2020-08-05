@@ -115,7 +115,7 @@ namespace ControllerModule
             int index = 0;
             while (index < ReportForm.condition.Length - 4)
             {
-                if (ReportForm.condition.Substring(index, 4) == "Дата") //(ReportForm.condition[index].ToString() == "Д") && (ReportForm.condition[index + 1].ToString() == "а") && (ReportForm.condition[index + 2].ToString() == "д") && (ReportForm.condition[index + 3].ToString() == "а")
+                if (ReportForm.condition.Substring(index, 4) == "Дата")
                 {
                     datesPositions.Add(index);
                 }
@@ -477,7 +477,7 @@ namespace ControllerModule
                             //По какой-то причине, в случае отсутствия в запросе на получение этой информации (т.е. таблицы reportClaimsCount)
                             //ключевого слова WHERE с последующим указанием некоторого условия, запрос возвращает не 3, а 6 столбцов, нужными 
                             //из которых являются последние три (индексы, соответственно, 3, 4, 5).
-                            //Разбираться в запросе мне лень, поэтому в случае, если столбцов 6, нужно взять последние 3.
+                            //поэтому в случае, если столбцов 6, нужно взять последние 3.
                             if (reportClaimsCountData.Columns.Count > 3)
                             {
 
@@ -716,7 +716,7 @@ namespace ControllerModule
                         //По какой-то причине, в случае отсутствия в запросе на получение этой информации (т.е. таблицы reportClaimsCount)
                         //ключевого слова WHERE с последующим указанием некоторого условия, запрос возвращает не 3, а 6 столбцов, нужными 
                         //из которых являются последние три (индексы, соответственно, 3, 4, 5).
-                        //Разбираться в запросе мне лень, поэтому в случае, если столбцов 6, нужно взять последние 3.
+                        //поэтому в случае, если столбцов 6, нужно взять последние 3.
                         if (reportClaimsCountData.Columns.Count > 3)
                         {
                             //Наполнение таблицы                   
