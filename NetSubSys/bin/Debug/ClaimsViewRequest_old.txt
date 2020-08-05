@@ -1,0 +1,17 @@
+SELECT     dbo.Claims.ClaimID, dbo.Claims.ClaimSenderUserName, dbo.Claims.ClaimSenderHostName, dbo.Claims.ClaimSenderHostIP, dbo.Claims.ClaimSenderRoom, 
+                      dbo.Claims.TypeOfIssue, dbo.Claims.ClaimDiscription, dbo.Claims.ClaimReceivedDate, dbo.Claims.ClaimReceivedTime, dbo.Claims.ClaimStatus, 
+                      dbo.Groups.GroupName AS ExecGroupName, 
+                      GroupOrderer.PersLastName + ' ' + GroupOrderer.PersFirstName + ' ' + GroupOrderer.PersPatronymic AS ExecGroupOrdererName, 
+                      dbo.Claims.ExecGroupOrderReceivedDate, dbo.Claims.ExecGroupOrderReceivedTime, 
+                      Executor.PersLastName + ' ' + Executor.PersFirstName + ' ' + Executor.PersPatronymic AS ExecPersName, 
+                      ExecOrderer.PersLastName + ' ' + ExecOrderer.PersFirstName + ' ' + ExecOrderer.PersPatronymic AS ExecOrdererName, dbo.Claims.ExecOrderReceivedDate, 
+                      dbo.Claims.ExecOrderReceivedTime, dbo.Claims.ClaimExecStartReceivedDate, dbo.Claims.ClaimExecStartReceivedTime, dbo.Claims.ClaimExecutionDescription, 
+                      dbo.Claims.ClaimExecCompleteReceivedDate, dbo.Claims.ClaimExecCompleteReceivedTime, dbo.CommonCategories.CommonCatName, 
+                      dbo.InternalCategories.IntCatName, dbo.Claims.AffectedObjectsCount
+FROM         dbo.Claims LEFT OUTER JOIN
+                      dbo.Groups ON dbo.Claims.ExecGroupID = dbo.Groups.GroupID LEFT OUTER JOIN
+                      dbo.Personal AS GroupOrderer ON dbo.Claims.ExecGroupOrdererID = GroupOrderer.PersID LEFT OUTER JOIN
+                      dbo.Personal AS Executor ON dbo.Claims.ExecID = Executor.PersID LEFT OUTER JOIN
+                      dbo.Personal AS ExecOrderer ON dbo.Claims.ExecOrdererID = ExecOrderer.PersID LEFT OUTER JOIN
+                      dbo.CommonCategories ON dbo.Claims.ClaimCommonCategoryID = dbo.CommonCategories.CommonCatID LEFT OUTER JOIN
+                      dbo.InternalCategories ON dbo.Claims.ClaimInternalCategoryID = dbo.InternalCategories.IntCatID

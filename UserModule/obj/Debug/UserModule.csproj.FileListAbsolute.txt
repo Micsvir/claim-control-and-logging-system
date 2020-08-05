@@ -1,0 +1,17 @@
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\UserModule.exe
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\UserModule.pdb
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\UserModule.Properties.Resources.resources
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\UserModule.csproj.GenerateResource.Cache
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\UserModule.exe
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\UserModule.pdb
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\obj\Debug\UserModule.MainWindow.resources
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\NetSubSys.dll
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\NetSubSys.pdb
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\UtilSubSys.dll
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\UtilSubSys.pdb
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\Microsoft.Vbe.Interop.dll
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\office.dll
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\Microsoft.Office.Interop.Word.xml
+C:\Users\SMS\Documents\Visual Studio 2008\Projects\UserModule\UserModule\bin\Debug\office.xml
