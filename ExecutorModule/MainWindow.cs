@@ -42,8 +42,6 @@ namespace ExecutorModule
                     //получение PID текущего процесса, чтобы ModulesUpdater при необходимости смог его завершить
                     int processID = Process.GetCurrentProcess().Id;
 
-                    //string argString = processID.ToString() + " " + updatesSource + " " + Process.GetCurrentProcess().MainModule.FileName;
-
                     //создание и запуск процесса ModulesUpdater.exe
                     System.Diagnostics.Process updater = new Process();
                     updater.StartInfo.FileName = @"ModulesUpdater.exe";
@@ -346,8 +344,7 @@ namespace ExecutorModule
 
         //Заполнение переменной groupActiveClaims актуальными значениями, полученными
         //от сервера и помещенными в момент получения в переменную receivedData.
-        //По этой причине данный метод вызывается сразу же после получения данных от сервера и заполнения
-        //lvGroupActiveClaims.
+        //По этой причине данный метод вызывается сразу же после получения данных от сервера и заполнения lvGroupActiveClaims.
         //groupAcitveClaims обнуляется в момент изменения значения SelectedIndex у объекта cbUsersList (метод cbUsersList_SelectedIndexChanged класса LoginForm)
         public void UpdateGroupActiveClaims(DataTable data)
         {
@@ -385,9 +382,6 @@ namespace ExecutorModule
                             idExists = true;
                             rowIndex = gacRow;
                         }
-                        /*MessageBox.Show("data.Rows[row][ClaimID]: " + data.Rows[row]["ClaimID"] + "\n" + "groupActiveClaims.Rows[gacRow][ClaimID]: " + groupActiveClaims.Rows[gacRow]["ClaimID"] +
-                            "\n" + "idExists: " + idExists.ToString() +
-                            "\n" + "rowIndex: " + rowIndex.ToString());*/
                     }
 
                     //если ID заявки из текущей строки data обнаруживается среди строк groupActiveClaims,
@@ -422,22 +416,6 @@ namespace ExecutorModule
                     groupActiveClaims.Rows.Add(newRow);
                 }
             }
-            //проверка результатов
-            /*
-            MessageBox.Show("data items count = " + data.Rows.Count.ToString() + "\ngroupActiveClaims items count = " + groupActiveClaims.Rows.Count.ToString());
-            string dataClaimsIDs = "";
-            string gacClaimsIDs = "";
-            for (int row = 0; row < data.Rows.Count; row++)
-            {
-                dataClaimsIDs += data.Rows[row]["ClaimID"] + " : " + data.Rows[row]["ExecPersName"] + "\n";
-            }
-            for (int row = 0; row < groupActiveClaims.Rows.Count; row++)
-            {
-                gacClaimsIDs += groupActiveClaims.Rows[row]["ClaimID"] + " : " + groupActiveClaims.Rows[row]["ExecPersName"] + "\n";
-            }
-            MessageBox.Show("receivedData:\n" + dataClaimsIDs + "\n\n" + "groupActiveClaimsData:\n" + gacClaimsIDs);
-            */
-            //конец проверки
         }
 
         //Добавление заявок исполнителя в ListView userAcitveClaims
@@ -1079,15 +1057,7 @@ namespace ExecutorModule
                                 dr["ClaimStatus"] = "Выполнена";
                                 closingClaimData.dataToSend.Rows.Add(dr);
 
-                                //отправка сообщения на сервер
-                                //try
-                                {
-                                    client.SendMessage(closingClaimData, false);
-                                }
-                                //catch (Exception ex)
-                                {
-                                    //MessageBox.Show("Отправить на сервер сообщение о выполнении заявки не удалось\n\n" + ex.Message);
-                                }
+                                client.SendMessage(closingClaimData, false);
                             }
                         }
                         else
@@ -1461,6 +1431,5 @@ namespace ExecutorModule
         {
             tsbCloseTheClaim_Click(sender, e);
         }
-
     }
 }
