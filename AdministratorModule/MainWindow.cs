@@ -33,8 +33,6 @@ namespace AdministratorModule
                     //получение PID текущего процесса, чтобы ModulesUpdater при необходимости смог его завершить
                     int processID = Process.GetCurrentProcess().Id;
 
-                    //string argString = processID.ToString() + " " + updatesSource + " " + Process.GetCurrentProcess().MainModule.FileName;
-
                     //создание и запуск процесса ModulesUpdater.exe
                     System.Diagnostics.Process updater = new Process();
                     updater.StartInfo.FileName = @"ModulesUpdater.exe";
@@ -62,7 +60,6 @@ namespace AdministratorModule
                     }
                 }
 
-                //Configuration.CreateListView(lvActiveClaims, Configuration.GetValuesBySettingsName("IncomingClaimsColumnsSet"), 12);
                 server = new Server(Convert.ToInt32(Configuration.GetValuesBySettingsName("ThisServerPort")[0]));
                 try
                 {
@@ -669,8 +666,6 @@ namespace AdministratorModule
                         && RequestParametersSource.Rows[curParameterIndex + 2].Cells["Parameter"].Value.ToString() == "Дата"
                         && RequestParametersSource.Rows[curParameterIndex + 3].Cells["Parameter"].Value.ToString() == "Время")
                     {
-                        //MessageBox.Show("Да, в списке параметров есть две пары параметров Дата-Время, расположенных друг за другом");
-
                         //план действий такой же, как и при расстановке объединяющих скобок для одинаковых параметров
                         int firstIndex = curParameterIndex;
                         int lastIndex = firstIndex + 3;
@@ -862,11 +857,6 @@ namespace AdministratorModule
                     //Проверка роли сотрудника
                     if (loginUserData.Rows[0]["PersRole"].ToString() == "Администратор")
                     {
-                        //переменная-флаг принимает значение true, что свидетельствует о том,
-                        //что сейчас будут получены все активные заявки для модуля контролера,
-                        //и выполнять проверку на поступление новых заявок с целью показать уведомление не нужно
-                        //firstTimeDataReceivedAfterLogin = true;
-
                         //Отключение от сервера (в случае, если клиент был к нему подключен) для последующего переподключения.
                         //Процедура необходима для того, чтобы в списке connectedClients на сервере
                         //оказался данный ExecutorModule с корректным значением свойства dbUserID
