@@ -62,9 +62,6 @@ namespace UserModule
                     cbStep3.Items.Add(curRoom);
                 }
 
-                //настройка колонок lwAcitveClaims
-                //Configuration.CreateListView(lwActiveClaims, Configuration.GetValuesBySettingsName("ActiveClaimsColumnsSet"), 12);
-
                 //настройка колонок dgvActiveClaims
                 Configuration.CreateDGVColumns(dgvActiveClaims, Configuration.GetValuesBySettingsName("ActiveClaimsColumnsSet"));
                 try
@@ -140,7 +137,7 @@ namespace UserModule
         DataTable usersData = new DataTable();
         int userID = -1;
 
-        //Номер телефона смены, по которому следует обращаться в случае возникших проблем (указан в файле настроек)
+        //Номер телефона, по которому следует обращаться в случае возникших проблем (указан в файле настроек)
         string phoneNum = "";
 
         //Список пар строк и цветов, в которые надо расскрасить строки (dgvActiveClaims.Rows)
@@ -366,11 +363,8 @@ namespace UserModule
                     //в базу данных
                     this.client.SendMessage(claimMessage, false);
 
-                    /*ListViewItem lvi = new ListViewItem();
-                    lvi.Text = claimMessage.dataToSend.Rows[0]["ClaimDiscription"].ToString();
-                    lvi.SubItems.Add("Добавлена в очередь");
-                    lwActiveClaims.Items.Add(lvi);*/
                     MessageBox.Show("Заявка была отправлена на сервер");
+                    
                     //обнуление формы
                     tbStep5.Text = "";
                     cbStep1.SelectedIndex = -1;
@@ -401,22 +395,6 @@ namespace UserModule
 
         //делегат для заполнения lwAcitveClaims
         public delegate void lwActiveClaimsDeleagate(NetMessage data);
-        
-        //обработчик события сервера
-        /*
-        public void AddClaimsToListView(NetMessage data)
-        {
-            if (lwActiveClaims.InvokeRequired)
-            {
-                lwActiveClaimsDeleagate newDel = new lwActiveClaimsDeleagate(AddClaimsToListView);
-                this.Invoke(newDel, new object[] { data });
-            }
-            else
-            {
-                Configuration.AddDataToListView(lwActiveClaims, data.dataToSend);
-            }
-        }
-        */
 
         //обработчик события сервера
         public void AddClaimsToDGV(NetMessage data)
@@ -438,38 +416,6 @@ namespace UserModule
                 }
             }
         }
-        
-        //обработчик события клиента
-        /*
-        public void AddClientsInfoToLV(NetMessage data)
-        {
-            dt = data.dataToSend;
-            if (lwActiveClaims.InvokeRequired)
-            {
-                lwActiveClaimsDeleagate newDel = new lwActiveClaimsDeleagate(AddClaimsToListView);
-                this.Invoke(newDel, new object[] { data });
-            }
-            else
-            {
-                if (!usersDataRequest)
-                {
-                    Configuration.AddDataToListView(lwActiveClaims, data.dataToSend);
-                }
-                else
-                {
-                    usersDataRequest = false;
-                    usersData = data.dataToSend;
-                    for (int i = 0; i < usersData.Rows.Count; i++)
-                    {
-                        if (usersData.Rows[i]["PersFirstName"].ToString() == "Пользователь")
-                        {
-                            userID = Convert.ToInt32(usersData.Rows[i]["PersID"]);
-                        }
-                    }
-                }
-            }
-        }
-        */
 
         //обработчик события клиента
         public void AddClientsInfoToDGV(NetMessage data)
