@@ -28,54 +28,13 @@ namespace ExecutorModule
         //выбор общепринятой категории
         private void cbCommonCategories_Click(object sender, EventArgs e)
         {
-            /*
-            cbCommonCategories.Items.Clear();
-            //подготовка и отправка запроса на получение списка общепринятых категорий заявок
-            MainWindow.selectCategoryButtonsClicked = true;
-            NetMessage msg = new NetMessage(NetMessage.commandType.GetInfo, "GetCommonCategories");
-            try
-            {
-                MainWindow.client.SendMessage(msg, false);
 
-                //заполнение cbCommonCategories полученными данными
-                for (int row = 0; row < MainWindow.receivedData.Rows.Count; row++)
-                {
-                    cbCommonCategories.Items.Add(MainWindow.receivedData.Rows[row]["CommonCatName"]);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-            MainWindow.selectCategoryButtonsClicked = false;
-            */
         }
 
         //выбор внутренней категории системы
         private void cbInternalCategories_Click(object sender, EventArgs e)
         {
-            /*
-            cbInternalCategories.Items.Clear();
-            //подготовка и отправка запроса на получение списка внутренних категорий заявок
-            MainWindow.selectCategoryButtonsClicked = true;
-            NetMessage msg = new NetMessage(NetMessage.commandType.GetInfo, "GetInternalCategories");
-            try
-            {
-                MainWindow.client.SendMessage(msg, false);
 
-                //заполнение cbInternalCategories полученными данными
-                for (int row = 0; row < MainWindow.receivedData.Rows.Count; row++)
-                {
-                    cbInternalCategories.Items.Add(MainWindow.receivedData.Rows[row]["IntCatName"]);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            MainWindow.selectCategoryButtonsClicked = false;
-            */
         }
 
         //присваивание значения переменной selectedCommonCategoryID
