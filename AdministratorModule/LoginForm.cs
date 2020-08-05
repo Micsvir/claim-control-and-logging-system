@@ -37,25 +37,7 @@ namespace AdministratorModule
 
         private void cbUsersList_Click(object sender, EventArgs e)
         {
-            /*
-            try
-            {
-                NetMessage msg = new NetMessage(NetMessage.commandType.GetInfo, "GetUsers");
-                MainWindow.client.SendMessage(msg, false);
 
-                cbUsersList.Items.Clear();
-                for (int rowCounter = 0; rowCounter < MainWindow.receivedData.Rows.Count; rowCounter++)
-                {
-                    {
-                        cbUsersList.Items.Add(MainWindow.receivedData.Rows[rowCounter]["PersLastName"] + " " + MainWindow.receivedData.Rows[rowCounter]["PersFirstName"] + " " + MainWindow.receivedData.Rows[rowCounter]["PersPatronymic"]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            */
         }
 
         private void mtbUserPassword_TextChanged(object sender, EventArgs e)
