@@ -273,8 +273,6 @@ namespace NetSubSys
             }
             try
             {
-                //_IP = System.Net.Dns.GetHostByName(_hostName).AddressList[0].ToString();
-                //_IP = System.Net.Dns.GetHostEntry(_hostName).AddressList[0].ToString();
                 int i = -1;
                 do
                 {
@@ -297,6 +295,7 @@ namespace NetSubSys
             }
             _recievedMessages = new List<NetMessage>();
         }
+        
         public Host(string hIP)
         {
             try
@@ -315,8 +314,6 @@ namespace NetSubSys
             {
                 try
                 {
-                    //_IP = System.Net.Dns.GetHostByName(_hostName).AddressList[0].ToString();
-                    //_IP = System.Net.Dns.GetHostEntry(_hostName).AddressList[0].ToString();
                     int i = -1;
                     do
                     {
@@ -466,8 +463,7 @@ namespace NetSubSys
                 newActiveClient.Client = connectingClient; //полю Client присваивается значение подключаемого клиента (т.е. переменной connectingClient)
                 newActiveClient.isIdle = true; //и полю isIdle присваивается значение true, которое свидетельствует о том, что данный клиент не обрабатывается методом ReceiveClientData()
                 activeClients.Add(newActiveClient);
-                //Thread connectionThread = new Thread(new ThreadStart(connectedClient.RecieveClientsData)); //создается новый поток для получения и передачи данных этого соединения
-                Thread connectionThread = new Thread(new ThreadStart(ReceiveClientData)); //тест
+                Thread connectionThread = new Thread(new ThreadStart(ReceiveClientData));
                 connectionThread.IsBackground = true;
                 connectionThread.Start();
             }
@@ -486,7 +482,6 @@ namespace NetSubSys
                 newActiveClient.Client = connectingClient;
                 newActiveClient.isIdle = true;
                 activeClients.Add(newActiveClient);
-                //Thread connectionThread = new Thread(new ThreadStart(connectedClient.RecieveClientsData)); //создается новый поток для получения и передачи данных этого соединения
                 Thread connectionThread = new Thread(new ThreadStart(ReceiveClientData)); //тест
                 connectionThread.IsBackground = true;
                 connectionThread.Start();
@@ -518,7 +513,7 @@ namespace NetSubSys
                     MessageRecieved(_recievedMessage);
                 }
 
-                //Здесь, очевидно, придется предусмотреть различные обработчики для каждого типа
+                //Здесь пришлось предусмотреть различные обработчики для каждого типа
                 //входящих сообщений, который определяется значением поля _command класса NetMessage
 
                 //подключение к серверу
@@ -879,7 +874,6 @@ namespace NetSubSys
                             {
                                 _recievedMessage.dataToSend = sqlServer.GetData("ExecutedClaimsReport", columnsSet, null);
                             }
-                            //sqlServer.CloseConnection();
                             _recievedMessage.command = NetMessage.commandType.Message;
                             _recievedMessage.text = "OK";
                             binFormatter.Serialize(stream, _recievedMessage);
@@ -1132,9 +1126,7 @@ namespace NetSubSys
                 }
 
 
-
-
-                //тестовый временный режим отправки сообщения с заявкой на модуль контролера
+                //тестовый режим отправки сообщения с заявкой на модуль контролера
                 //+ вполне рабочая схема
                 if (_recievedMessage.command == NetMessage.commandType.AddClaim)
                 {
@@ -1197,7 +1189,6 @@ namespace NetSubSys
                         //переменная хранит модули, которым не удалось отправить сообщение
                         List<Client> badModules = new List<Client>();
 
-                        //foreach (Client connectedClient in connectedClients)
                         for (int i = 0; i < connectedClients.Count; i++)
                         {
                             if (connectedClients[i].clientType == Client.ClientType.ControllerModule)
@@ -2290,18 +2281,6 @@ namespace NetSubSys
 
         //переменные, константы
 
-        //private int _port;
-        /*public int port
-        {
-            get
-            {
-                return _port;
-            }
-            set
-            {
-                _port = value;
-            }
-        }*/
         private ClientType _clientType;
         public ClientType clientType
         {
@@ -2503,14 +2482,6 @@ namespace NetSubSys
                 throw myNewEx;
             }
             client.Close();
-
-            /*
-            MessageSender ms = new MessageSender(serverIP, serverPort, null);
-            ms.ConnectionChecked += new MessageSender.ConnectionCheckDelegate(TryConnection);
-            Thread sendingThread = new Thread(new ThreadStart(ms.ConnectToServer));
-            sendingThread.Start();
-            sendingThread.IsBackground = true;
-            */
         }
 
         //метод для делегата ConnectionCheckDelegate класса MessageSender
@@ -2569,49 +2540,6 @@ namespace NetSubSys
     {
         //Переменные, константы
 
-        /*protected string _senderIP;
-        public string senderIP
-        {
-            get
-            {
-                return _senderIP;
-            }
-            set
-            {
-                if (Host.CorrectIP(value))
-                {
-                _senderIP = value;
-                }
-                else
-                {
-                    _senderIP = "N/A";
-                }
-            }
-        }
-        protected string _senderHostName;
-        public string senderHostName
-        {
-            get
-            {
-                return _senderHostName;
-            }
-            set
-            {
-                _senderHostName = value;
-            }
-        }
-        protected string _senderUserName;
-        public string senderUserName
-        {
-            get
-            {
-                return _senderUserName;
-            }
-            set
-            {
-                _senderUserName = value;
-            }
-        }*/
         private Client _client;
         public Client client
         {
@@ -2639,7 +2567,7 @@ namespace NetSubSys
         public enum commandType
         {
             ConnectToTheServer, //проверка двухстороннего соединения, получение актуальных данных с SQL сервера
-            DisconnectFromTheServer, //
+            DisconnectFromTheServer,
             CheckTheConnection, //переодическая(?) проверка соединения с клиентами (если выполняется на стороне сервера)
             Message, //отправка текста
             BroadcastMessage, //отправка текста всем "подключенным" клиентам
@@ -2792,7 +2720,6 @@ namespace NetSubSys
             SqlCommand cmd = new SqlCommand(sql, cqlCon);
             cmd.ExecuteNonQuery();
 
-            //sql = "INSERT INTO Personal_In_Groups (PersID, GroupID) SELECT Personal.PersID, Groups.GroupID FROM Personal CROSS JOIN Groups WHERE (Personal.PersID = (SELECT PersID FROM Personal AS Personal_1 WHERE (PersFirstName = '" + dataToInsert.dataToSend.Rows[0]["UserFirstName"] + "') AND (PersLastName = '" + dataToInsert.dataToSend.Rows[0]["UserLastName"] + "') AND (PersPatronymic = '" + dataToInsert.dataToSend.Rows[0]["UserPatronymic"] + "') AND (PersRole = '" + dataToInsert.dataToSend.Rows[0]["UserRole"] + "'))) AND (Groups.GroupID = (SELECT GroupID FROM Groups AS Groups_1 WHERE (GroupName = '" + dataToInsert.dataToSend.Rows[0]["UserGroup"] + "')))";
             sql = "INSERT INTO Personal_In_Groups (PersID, GroupID) SELECT Personal.PersID, Groups.GroupID FROM Personal CROSS JOIN Groups WHERE (Personal.PersID = (SELECT IDENT_CURRENT('Personal')) AND (Groups.GroupID = (SELECT GroupID FROM Groups AS Groups_1 WHERE (GroupName = '" + dataToInsert.dataToSend.Rows[0]["UserGroup"] + "'))))";
 
 
