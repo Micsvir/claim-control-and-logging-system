@@ -37,25 +37,7 @@ namespace ControllerModule
 
         private void cbUsersList_Click(object sender, EventArgs e)
         {
-            /*
-            try
-            {
-                NetMessage msg = new NetMessage(NetMessage.commandType.GetInfo, "GetUsers");
-                MainForm.client.SendMessage(msg, false);
 
-                cbUsersList.Items.Clear();
-                for (int rowCounter = 0; rowCounter < MainForm.receivedData.Rows.Count; rowCounter++)
-                {
-                    {
-                        cbUsersList.Items.Add(MainForm.receivedData.Rows[rowCounter]["PersLastName"] + " " + MainForm.receivedData.Rows[rowCounter]["PersFirstName"] + " " + MainForm.receivedData.Rows[rowCounter]["PersPatronymic"]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            */
         }
 
         private void mtbUserPassword_TextChanged(object sender, EventArgs e)
