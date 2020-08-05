@@ -433,6 +433,7 @@ namespace UtilSubSys
                     }
                 }
             }
+            
             //простое заполнение targetDGV значениями из sourceDataTable
             else
             {
