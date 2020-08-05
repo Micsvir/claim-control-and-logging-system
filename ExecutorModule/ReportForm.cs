@@ -193,11 +193,6 @@ namespace ExecutorModule
             dgvParametersSelection.Rows[1].Cells[0].Value = "Дата";
             dgvParametersSelection.Rows[1].Cells[1].Value = "=";
             dgvParametersSelection.Rows[1].Cells[2].Value = year + "." + month + "." + day;
-            /*
-            dgvParametersSelection.Rows.Add();
-            dgvParametersSelection.Rows[4].Cells[0].Value = "Время";
-            dgvParametersSelection.Rows[4].Cells[1].Value = "<";
-            dgvParametersSelection.Rows[4].Cells[2].Value = "10:30:00";*/
         }
 
         //заполнение целевого DataGridView данными из указанного в параметрах источника
@@ -715,6 +710,5 @@ namespace ExecutorModule
                 }
             }
         }
-
     }
 }
