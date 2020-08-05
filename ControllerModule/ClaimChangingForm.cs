@@ -24,30 +24,7 @@ namespace ControllerModule
 
         private void cbExecGroupsList_MouseClick(object sender, MouseEventArgs e)
         {
-            /*
-            cbExecGroupsList.Items.Clear();
-            try
-            {
-                //Запрос списка групп
-                MainForm.getGroupsButtonClick = true;
-                NetMessage getGroupsListMsg = new NetMessage(NetMessage.commandType.GetInfo, "GetGroups");
-                MainForm.client.SendMessage(getGroupsListMsg, false);
 
-                MainForm.groupsData = MainForm.receivedData;
-
-                //заполнение cbExecutorsList
-                for (int row = 0; row < MainForm.receivedData.Rows.Count; row++)
-                {
-                    cbExecGroupsList.Items.Add(MainForm.receivedData.Rows[row]["GroupName"]);
-                }
-                MainForm.getGroupsButtonClick = false;
-            }
-            catch (Exception ex)
-            {
-                MainForm.getGroupsButtonClick = false;
-                MessageBox.Show(ex.Message);
-            }
-            */
         }
 
         private void cbExecGroupsList_SelectedIndexChanged(object sender, EventArgs e)
