@@ -31,8 +31,6 @@ namespace ControllerModule
                     
                     //получение PID текущего процесса, чтобы ModulesUpdater при необходимости смог его завершить
                     int processID = Process.GetCurrentProcess().Id;
-
-                    //string argString = processID.ToString() + " " + updatesSource + " " + Process.GetCurrentProcess().MainModule.FileName;
                     
                     //создание и запуск процесса ModulesUpdater.exe
                     System.Diagnostics.Process updater = new Process();
@@ -118,6 +116,7 @@ namespace ControllerModule
         //Отображает на экране сообщение о поступлении новой заявки
         bool firstTimeDataReceivedAfterLogin = false;
         public delegate void ShowNotificationDelegate();
+        
         public void ShowNotificationAndPlaySound()
         {
             //Подсчитывается кол-во заявок в ListView.
@@ -540,11 +539,13 @@ namespace ControllerModule
                             {
                                 //создание сообщения для отправки на сервер
                                 NetMessage updateClaims = new NetMessage(NetMessage.commandType.UpdateClaim);
+                                
                                 //формирование DataTable
                                 updateClaims.dataToSend.Columns.Add("ClaimID");
                                 updateClaims.dataToSend.Columns.Add("ExecGroupID");
                                 updateClaims.dataToSend.Columns.Add("ClaimStatus");
                                 updateClaims.dataToSend.Columns.Add("ExecGroupOrdererID");
+                                
                                 //эти поля нужно обнулить, т.к. одна из заявок уже была назначена какому-то исполнителю
                                 updateClaims.dataToSend.Columns.Add("ExecID");
                                 updateClaims.dataToSend.Columns.Add("ExecOrdererID");
@@ -552,11 +553,11 @@ namespace ControllerModule
                                 updateClaims.dataToSend.Columns.Add("ExecOrderReceivedTime");
                                 updateClaims.dataToSend.Columns.Add("ClaimExecStartReceivedDate");
                                 updateClaims.dataToSend.Columns.Add("ClaimExecStartReceivedTime");
+                                
                                 //присваиваемый заявке статус
                                 string status = "Ожидает назначения ответственного исполнителя";
 
                                 int selectedIndex = execSelForm.cbExecutorsList.SelectedIndex;
-                                //int selectedGroupID = Convert.ToInt32(receivedData.Rows[selectedIndex]["GroupID"]);
                                 int selectedGroupID = GetGroupIDByName(execSelForm.cbExecutorsList.Items[execSelForm.cbExecutorsList.SelectedIndex].ToString(), groupsData, "GroupName", "GroupID");
 
                                 //Вычисление номера столбца lvActiveClaims, в котором хранятся ID заявок
@@ -595,10 +596,8 @@ namespace ControllerModule
                                 {
                                     MessageBox.Show(ex.Message);
                                 }
-
                                 //снятие флага, что была нажата кнопка выбора группы
                                 getGroupsButtonClick = false;
-
                             }
                         }
                     }
@@ -663,16 +662,17 @@ namespace ControllerModule
                         {
                             //создание сообщения для отправки на сервер
                             NetMessage updateClaims = new NetMessage(NetMessage.commandType.UpdateClaim);
+                            
                             //формирование DataTable
                             updateClaims.dataToSend.Columns.Add("ClaimID");
                             updateClaims.dataToSend.Columns.Add("ExecGroupID");
                             updateClaims.dataToSend.Columns.Add("ClaimStatus");
                             updateClaims.dataToSend.Columns.Add("ExecGroupOrdererID");
+                            
                             //присваиваемый заявке статус
                             string status = "Ожидает назначения ответственного исполнителя";
 
                             int selectedIndex = execSelForm.cbExecutorsList.SelectedIndex;
-                            //int selectedGroupID = Convert.ToInt32(receivedData.Rows[selectedIndex]["GroupID"]);
                             int selectedGroupID = GetGroupIDByName(execSelForm.cbExecutorsList.Items[execSelForm.cbExecutorsList.SelectedIndex].ToString(), groupsData, "GroupName", "GroupID");
 
                             //Вычисление номера столбца lvActiveClaims, в котором хранятся ID заявок
